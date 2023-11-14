@@ -1,10 +1,9 @@
 package controllers
 
 import (
-	"github.com/gofiber/fiber/v2"
-
 	"github.com/1Nelsonel/Wolmart-Fiber/database"
 	"github.com/1Nelsonel/Wolmart-Fiber/models"
+	"github.com/gofiber/fiber/v2"
 )
 
 // ===========GET ALL PRODUCTS==========

@@ -22,7 +22,13 @@ func ConnectDB() {
 	green.Println("Database connected successfully.......")
 
 	// Auto Migration
-	if err := db.AutoMigrate(&models.Product{}, models.Category{}); err != nil {
+	if err := db.AutoMigrate(
+		&models.Product{},
+		&models.Category{},
+		&models.Brand{},
+		&models.Vendor{},
+		&models.Image{},
+		&models.FAQ{}); err != nil {
 		danger := color.New(color.FgHiRed)
 		danger.Println("Auto migration failed:: ", err)
 	} else {
@@ -31,5 +37,4 @@ func ConnectDB() {
 	}
 
 	DBConn = db
-
 }
