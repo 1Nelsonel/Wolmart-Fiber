@@ -8,7 +8,7 @@ import (
 
 	"github.com/1Nelsonel/Wolmart-Fiber/database"
 	"github.com/1Nelsonel/Wolmart-Fiber/routes"
-)
+)	
 
 // Middleware to initialize db connections
 func init() {
