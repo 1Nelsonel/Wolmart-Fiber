@@ -27,4 +27,10 @@ func SetupRoutes(app *fiber.App) {
 	app.Get("/faqs/:id", faqController.GetFAQ)
 	app.Put("/faqs/:id", faqController.UpdateFAQ)
 	app.Delete("/faqs/:id", faqController.DeleteFAQ)
+
+	// cart and checkout section
+	app.Get("/cart/", controllers.Cart)
+	app.Get("/checkout/", controllers.Checkout)
+	app.Get("/compare/", controllers.Compare)
+	app.Get("/wishlist/", controllers.Whishlist)
 }

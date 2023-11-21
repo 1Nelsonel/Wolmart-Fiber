@@ -21,5 +21,22 @@ func Product(c *fiber.Ctx) error  {
 	return c.Render("product", c, "partials/layout")
 }
 
+// Cart
+func Cart(c *fiber.Ctx) error {
+	return c.Render("cart", c, "partials/layout")
+}
 
+// checkout
+func Checkout(c *fiber.Ctx) error {
+	return c.Render("checkout", c, "partials/layout")
+}
 
+// compare
+func Compare(c *fiber.Ctx) error {
+	return c.Render("compare", c, "partials/layout")
+}
+
+// Whishlist
+func Whishlist(c *fiber.Ctx) error {
+	return c.Render("whishlist", c, "partials/layout")
+}

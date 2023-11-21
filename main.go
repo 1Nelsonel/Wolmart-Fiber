@@ -6,15 +6,16 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/template/html/v2"
 
+	adminroutes "github.com/1Nelsonel/Wolmart-Fiber/admin/adminRoutes"
 	"github.com/1Nelsonel/Wolmart-Fiber/database"
 	"github.com/1Nelsonel/Wolmart-Fiber/routes"
-)	
+	// "github.com/qinains/fastergoding"
+)
 
 // Middleware to initialize db connections
 func init() {
 	database.ConnectDB()
 }
-
 
 func main() {
 	// Database connect
@@ -29,12 +30,15 @@ func main() {
 	// Create a new engine
 	engine := html.New("./views", ".html")
 
+	// fastergoding.Run() // hot reload
+
 	app := fiber.New(fiber.Config{
-		Views: engine,
+		Views:       engine,
 		ViewsLayout: "partials/layouts",
 	})
 
 	app.Static("assets", "./assets")
+	app.Static("adminAssets", "./adminAssets")
 
 	// Initialize default config
 	app.Use(logger.New())
@@ -42,6 +46,9 @@ func main() {
 	app.Use(cors.New())
 
 	routes.SetupRoutes(app)
+	adminroutes.AdminSetupRoutes(app)
 
-	app.Listen(":8080")
+	// app.Listen(":8080")
+	app.Listen("0.0.0.0:8080")
+
 }
