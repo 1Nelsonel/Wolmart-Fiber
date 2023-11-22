@@ -45,7 +45,9 @@ func main() {
 
 	app.Use(cors.New())
 
+	// Routes
 	routes.SetupRoutes(app)
+	routes.AuthSetupRoutes(app)
 	adminroutes.AdminSetupRoutes(app)
 
 	// app.Listen(":8080")

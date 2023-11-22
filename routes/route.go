@@ -14,8 +14,7 @@ func SetupRoutes(app *fiber.App) {
 	app.Get("/blogs/", controllers.Blogs)
 	app.Get("/contact/", controllers.Contact)
 	
-	// Auth router
-	app.Get("/login/", controllers.Login)
+	
 
 	// FAQ routes
 	faqController := controllers.NewFAQController(database.DBConn) 

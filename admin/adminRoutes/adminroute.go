@@ -8,5 +8,6 @@ import (
 func AdminSetupRoutes(app *fiber.App) {
 	app.Get("/dashboard/", admincontroller.Dashboard)
 	app.Get("/addProduct/", admincontroller.AddProduct)
+	// app.Post("/addProduct/", )
 	app.Get("/adminProducts/", admincontroller.AdminProducts)
 }
