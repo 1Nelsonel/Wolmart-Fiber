@@ -10,4 +10,8 @@ func AdminSetupRoutes(app *fiber.App) {
 	app.Get("/addProduct/", admincontroller.AddProduct)
 	// app.Post("/addProduct/", )
 	app.Get("/adminProducts/", admincontroller.AdminProducts)
+
+	// Category
+	app.Get("/Category/", admincontroller.Category)
+	app.Post("/addCategory/", admincontroller.AddCategory)
 }

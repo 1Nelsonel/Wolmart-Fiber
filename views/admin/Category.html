@@ -1,0 +1,182 @@
+{{ define "Category" }}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0 font-size-18">Category List</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Category</a></li>
+                                <li class="breadcrumb-item active">Category List</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <h5 class="card-title">Category List <span
+                                                class="text-muted fw-normal ms-2">({{ len .Categories }})</span></h5>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
+                                        
+                                        <div>
+                                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <i class="bx bx-plus me-1"></i> Add New
+                                            </a>
+                                        </div>
+                                        
+                                            <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">New Category</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- <form method="post" enctype="multipart/form-data" action="/addCategory/"> -->
+                                                            <form method="post" enctype="multipart/form-data" action="/addCategory/" id="categoryForm">
+                                                                <div class="mb-3">
+                                                                    <label for="recipient-name" class="col-form-label">Category Name:</label>
+                                                                    <input type="text" name="categoryName" class="form-control" id="recipient-name">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="message-text" class="col-form-label">Category Image:</label>
+                                                                    <input class="form-control" type="file" name="categoryImage" id="message-text">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <!-- <button type="submit" class="btn btn-primary">Submit Category</button> -->
+                                                            <button type="button" class="btn btn-primary" id="submitCategoryBtn">Submit Category</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        <div class="dropdown">
+                                            <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle"
+                                                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="bx bx-dots-horizontal-rounded"></i>
+                                            </a>
+
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- end row -->
+
+                            <div class="table-responsive mb-4">
+                                <table class="table align-middle datatable dt-responsive table-check nowrap"
+                                    style="border-collapse: collapse; border-spacing: 0 8px; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="width: 50px;">
+                                                <div class="form-check font-size-16">
+                                                    <input type="checkbox" class="form-check-input" id="checkAll">
+                                                    <label class="form-check-label" for="checkAll"></label>
+                                                </div>
+                                            </th>
+                                            <th>#</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Name</th>
+                                            <th style="width: 80px; min-width: 80px;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{ range .Categories }}
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="form-check font-size-16">
+                                                    <input type="checkbox" class="form-check-input"
+                                                        id="contacusercheck1">
+                                                    <label class="form-check-label" for="contacusercheck1"></label>
+                                                </div>
+                                            </th>
+                                            
+                                            <td>No.</td>
+                                            
+                                            {{ range .Images }}
+                                            <td>
+                                                <img src="{{ .FilePath }}" alt="Category Image" class="avatar-sm rounded-circle me-2">
+                                            </td>
+                                            {{ end }}
+
+                                            <td>{{ .Name }}</td>
+                                            
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button
+                                                        class="btn btn-link font-size-16 shadow-none py-0 text-muted dropdown-toggle"
+                                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="bx bx-dots-horizontal-rounded"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                        <li><a class="dropdown-item" href="#">Something else here</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                      
+                                        {{ end }}
+                                       
+                                    </tbody>
+                                </table>
+                                <!-- end table -->
+                            </div>
+                            <!-- end table responsive -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+</div>
+<!-- end main content-->
+
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Attach a click event handler to the "Submit Category" button
+        $("#submitCategoryBtn").click(function () {
+            // Trigger the form submission
+            $("#categoryForm").submit();
+        });
+    });
+</script>
+{{ end }}
