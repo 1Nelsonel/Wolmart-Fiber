@@ -14,4 +14,5 @@ func AdminSetupRoutes(app *fiber.App) {
 	// Category
 	app.Get("/Category/", admincontroller.Category)
 	app.Post("/addCategory/", admincontroller.AddCategory)
+	app.Delete("/delete-category/:id", admincontroller.DeleteCategory)
 }

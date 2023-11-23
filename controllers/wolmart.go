@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"github.com/1Nelsonel/Wolmart-Fiber/database"
 	"github.com/1Nelsonel/Wolmart-Fiber/models"
 	"github.com/gofiber/fiber/v2"
 	"gorm.io/gorm"
@@ -8,7 +9,20 @@ import (
 
 // HOME
 func HomePage(c *fiber.Ctx) error {
-	return c.Render("home", c, "partials/layout")
+	// Get the database connection
+	db := database.DBConn // Assuming you have a database connection set up
+
+	// Fetch all categories with their associated images from the database
+	var categories []models.Category
+	if err := db.Preload("Images").Find(&categories).Error; err != nil {
+		return err
+	}
+
+
+	context := fiber.Map{
+		"Categories": categories,
+	}
+	return c.Render("home", context, "partials/layout")
 }
 
 // About

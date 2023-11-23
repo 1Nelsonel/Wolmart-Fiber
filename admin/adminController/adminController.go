@@ -88,3 +88,36 @@ func Category(c *fiber.Ctx) error {
 
 	return c.Render("Category", context, "partials/adminLayout")
 }
+
+// TODO fix this ! delete category
+
+// DELETE CATEGORY
+func DeleteCategory(c *fiber.Ctx) error {
+	// Get the database connection
+	db := database.DBConn // Assuming you have a database connection set up
+
+	// Get the category ID from the request parameters
+	categoryID := c.Params("id")
+
+	// Find the category in the database
+	var category models.Category
+	if err := db.Preload("Images").First(&category, categoryID).Error; err != nil {
+		return err
+	}
+
+	// Delete the associated images first
+	if err := db.Delete(&category.Images).Error; err != nil {
+		return err
+	}
+
+	// Delete the category
+	if err := db.Delete(&category).Error; err != nil {
+		return err
+	}
+
+	// Redirect or respond as needed
+	return c.Redirect("/Category/")
+	
+}
+
+
