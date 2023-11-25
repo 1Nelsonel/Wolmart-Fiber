@@ -7,6 +7,7 @@ import (
 	"github.com/1Nelsonel/Wolmart-Fiber/database"
 	"github.com/1Nelsonel/Wolmart-Fiber/models"
 	"github.com/gofiber/fiber/v2"
+	// "github.com/gofiber/fiber/v2/middleware/session"
 )
 
 // Dashboard
@@ -89,9 +90,9 @@ func Category(c *fiber.Ctx) error {
 	return c.Render("Category", context, "partials/adminLayout")
 }
 
-// TODO fix this ! delete category
+// TODO flash messages
 
-// DELETE CATEGORY
+// // DELETE CATEGORY
 func DeleteCategory(c *fiber.Ctx) error {
 	// Get the database connection
 	db := database.DBConn 
@@ -119,5 +120,3 @@ func DeleteCategory(c *fiber.Ctx) error {
 	return c.Redirect("/Category/")
 	
 }
-
-

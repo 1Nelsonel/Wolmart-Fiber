@@ -45,7 +45,7 @@ func main() {
 
 	app.Use(cors.New())
 
-	// overide method
+	// overide method delete middleware
 	app.Use(func (c *fiber.Ctx) error {
 		if c.Method()== fiber.MethodPost {
 			if  override := c.FormValue("_method");
