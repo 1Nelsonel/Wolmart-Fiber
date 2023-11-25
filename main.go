@@ -45,6 +45,17 @@ func main() {
 
 	app.Use(cors.New())
 
+	// overide method
+	app.Use(func (c *fiber.Ctx) error {
+		if c.Method()== fiber.MethodPost {
+			if  override := c.FormValue("_method");
+			override != "" {
+				c.Method(override)
+			}
+		}
+		return c.Next()
+	})
+
 	// Routes
 	routes.SetupRoutes(app)
 	routes.AuthSetupRoutes(app)

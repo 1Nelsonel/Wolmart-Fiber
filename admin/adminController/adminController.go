@@ -94,7 +94,7 @@ func Category(c *fiber.Ctx) error {
 // DELETE CATEGORY
 func DeleteCategory(c *fiber.Ctx) error {
 	// Get the database connection
-	db := database.DBConn // Assuming you have a database connection set up
+	db := database.DBConn 
 
 	// Get the category ID from the request parameters
 	categoryID := c.Params("id")
